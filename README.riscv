@@ -32,6 +32,7 @@ Contents
 	git submodule update --init --recursive
 	export RISCV=$(pwd)/RV64G
 	export PATH=$RISCV/bin:$PATH
+	./build.sh
 
 1b. rv8 simulator (that support sift generation)
 
@@ -42,7 +43,7 @@ Contents
 
 1c. Sniper and Pin
 
-	git clone -b riscv http://snipersim.org/<path-to-sniper>/sniper.git
+	git clone -b riscv http://snipersim.org/<path-to-sniper>/sniper.git #####
 	cd sniper
 	export SNIPER_ROOT=$(pwd)
 
@@ -78,7 +79,7 @@ Assumptions: You’ve own copy of SPEC CPU2006 v1.2 installed at $CPU2006_HOME
 	make test-build TEST_RV64="ARCH=rv64imafd TARGET=riscv64-unknown-elf"
 	make -j 1 # make -j $NPROC for parallel simulation
 
-2c. Sniper
+2c. Sniper			####
 
 	cd $SNIPER_ROOT
 	make # Parallel builds currently broken

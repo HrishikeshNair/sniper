@@ -127,7 +127,7 @@ $(PIN_HOME)/intel64/bin/pinbin:
 endif
 
 ifneq ($(NO_PYTHON_DOWNLOAD),1)
-PYTHON_DEP=python_kit/$(SNIPER_TARGET_ARCH)/lib/python2.7/lib-dynload/_sqlite3.so
+PYTHON_DEP=python_kit/$(SNIPER_TARGET_ARCH)/lib/python3.8/lib-dynload/_sqlite3.cpython-38-x86_64-linux-gnu.so
 python: $(PYTHON_DEP)
 $(PYTHON_DEP):
 	$(_MSG) '[DOWNLO] Python $(SNIPER_TARGET_ARCH)'

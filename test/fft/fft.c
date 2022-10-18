@@ -64,7 +64,7 @@ pthread_t ParmacsThreads[PARMACS_MAX_THREADS];
 
 #define SWAP(a,b) {double tmp; tmp=a; a=b; b=tmp;}
 
-#include "sim_api.h"
+//#include "sim_api.h"
 
 struct GlobalMemory {
 
@@ -146,7 +146,7 @@ char *argv;
   (start) = (unsigned long)(FullTime.tv_usec + FullTime.tv_sec * 1000000);
 };
 
-  SimSetThreadName("main");
+  //SimSetThreadName("main");
 
   while ((c = getopt(argc, argv, "p:m:n:l:stoh")) != -1) {
     switch(c) {
@@ -348,8 +348,8 @@ char *argv;
   InitU(N,umain);               /* initialize u arrays*/
   InitU2(N,umain2,rootN);
 
-  SimRoiStart();
-  SimNamedMarker(4, "begin");
+  //SimRoiStart();
+  //SimNamedMarker(4, "begin");
 
   /* fire off P processes */
   for (i=1; i<P; i++) {
@@ -374,8 +374,8 @@ char *argv;
   }
 }
 
-  SimNamedMarker(5, "end");
-  SimRoiEnd();
+  //SimNamedMarker(5, "end");
+  //SimRoiEnd();
 
   if (doprint) {
     if (test_result) {
@@ -487,7 +487,7 @@ void SlaveStart(int MyNum)
   {
     char name[10];
     sprintf(name, "worker-%d", MyNum);
-    SimSetThreadName(name);
+    //SimSetThreadName(name);
   }
 
 /* POSSIBLE ENHANCEMENT:  Here is where one might pin processes to
@@ -826,11 +826,11 @@ struct GlobalMemory *Global;
 
   /* do n1 1D FFTs on columns */
   for (j=MyFirst; j<MyLast; j++) {
-    SimMarker(1, j);
+    //SimMarker(1, j);
     FFT1DOnce(direction, m1, n1, upriv, &scratch[2*j*(n1+pad_length)]);
     TwiddleOneCol(direction, n1, N, j, umain2, &scratch[2*j*(n1+pad_length)],
       pad_length);
-    SimMarker(2, j);
+    //SimMarker(2, j);
   }
 
   {

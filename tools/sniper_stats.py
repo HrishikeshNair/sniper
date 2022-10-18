@@ -18,7 +18,19 @@ class SniperStatsBase:
       results += [ (name, idx, vals2.get(idx, 0) - vals1.get(idx, 0)) for idx in range(id_min, id_max) ]
       if name == 'performance_model.elapsed_time' and idx < ncores:
         results += [ ('performance_model.elapsed_time_begin', idx, vals1.get(idx, 0)) for idx in range(ncores) ]
+        
+        #SEARCHABLE TEXT BEGIN
+        #print("\n\n RESULTS after adding begintime: \n\n",results['performance_model.elapsed_time_begin'])
+        #SEARCHABLE TEXT END
+        
+        
         results += [ ('performance_model.elapsed_time_end', idx, vals2.get(idx, 0)) for idx in range(ncores) ]
+        
+        #SEARCHABLE TEXT BEGIN
+        #print("\n\n RESULTS after adding endtime: \n\n",stats['performance_model.elapsed_time_end'])
+        #SEARCHABLE TEXT END        
+        
+        
       elif name == 'barrier.global_time':
         results += [ ('barrier.global_time_begin', idx, vals1.get(idx, 0)) for idx in range(ncores) ]
         results += [ ('barrier.global_time_end', idx, vals2.get(idx, 0)) for idx in range(ncores) ]

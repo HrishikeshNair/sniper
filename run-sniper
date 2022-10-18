@@ -542,10 +542,14 @@ if traces:
     else:
       print >> sys.stderr, 'Cannot find trace', trace
       sys.exit(-1)
+# print >> sys.stderr, '[ADJxF] : outside elif usempi' # SEARCHABLE edit 1
 elif use_mpi:
+#  print >> sys.stderr, '[ADJxF] : inside elif usempi, before tracegen' # SEARCHABLE edit 2
   tracegen = {}
+#  print >> sys.stderr, '[ADJxF] : inside elif usempi, after tracegen' # SEARCHABLE edit 3
   if not mpi_ranks:
     mpi_ranks = ncores
+#  print >> sys.stderr, '[ADJxF] : after if not mpi_ranks' # SEARCHABLE edit 4
   tracegen['enabled'] = 'true'
   tracegen['emulate_syscalls'] = 'true'
   tracegen['num_apps'] = mpi_ranks
@@ -914,7 +918,7 @@ elif os.path.exists(os.path.join(outputdir, 'sim.cfg')):
     print '[SNIPER] Generating ASO visualization in viz/levels/functionbased/'
     os.system('%(sim_root)s/tools/viz/functionbased.py -d %(outputdir)s -o %(outputdir)s/viz >/dev/null' % locals())
 
-  gen_simout.generate_simout(resultsdir = outputdir, output = open(os.path.join(outputdir, 'sim.out'), 'w'), silent = True)
+  gen_simout.generate_simout(resultsdir = outputdir, output = open(os.path.join(outputdir, 'sim.out'), 'w'), silent = False)##########
 
 
 stats = dict(

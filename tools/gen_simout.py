@@ -48,18 +48,36 @@ def generate_simout(jobid = None, resultsdir = None, partial = None, output = sy
     i / (c or 1)
     for i, c in zip(results['performance_model.instruction_count'], results['performance_model.cycle_count_fixed'])
   ]
-  results['performance_model.nonidle_elapsed_time'] = [
-    results['performance_model.elapsed_time'][c] - results['performance_model.idle_elapsed_time'][c]
-    for c in range(ncores)
-  ]
-  results['performance_model.idle_elapsed_time'] = [
-    time0 - results['performance_model.nonidle_elapsed_time'][c]
-    for c in range(ncores)
-  ]
+  #results['performance_model.nonidle_elapsed_time'] = [
+   # results['performance_model.elapsed_time'][c] - results['performance_model.idle_elapsed_time'][c]
+  #  for c in range(ncores)
+ # ]
+  
+ # results['performance_model.idle_elapsed_time'] = [
+  #  time0 - results['performance_model.nonidle_elapsed_time'][c]
+   # for c in range(ncores)
+  #]
   results['performance_model.idle_elapsed_percent'] = [
     results['performance_model.idle_elapsed_time'][c] / float(time0)
     for c in range(ncores)
   ]
+  
+    #SEARCHABLE START
+  
+  results['performance_model.nonidle_elapsed_time'] = [
+    results['performance_model.elapsed_time'][c] - results['performance_model.idle_elapsed_time'][c]
+    for c in range(ncores)
+  ]
+  print("\n\n\n")
+  print('NON IDLE ELAPSED TIME: ',results['performance_model.nonidle_elapsed_time'])
+  print("\n")
+  print(' IDLE ELAPSED TIME: ', results['performance_model.idle_elapsed_time'])
+  print("\n")
+  print("ELAPSED TIME: ",results['performance_model.elapsed_time'])
+  print('\n')
+  print("ELAPSED TIME FIXED: ",time0)
+  print("\n\n\n")
+  #SEARCHABLE END
 
   template = [
     ('  Instructions', 'performance_model.instruction_count', str),

@@ -122,11 +122,11 @@ def stats_process(config, results):
       stats['performance_model.elapsed_time'][c] - stats['performance_model.idle_elapsed_time'][c]
       for c in range(ncores)
     ]
-    stats['performance_model.idle_elapsed_time'] = [
+    stats['performance_model.idle_elapsed_time'] = [ 
       time0_end - time0_begin - stats['performance_model.nonidle_elapsed_time'][c]
       for c in range(ncores)
     ]
-    stats['performance_model.elapsed_time'] = [ time0_end - time0_begin for c in range(ncores) ]
+  stats['performance_model.elapsed_time'] = [ time0_end - time0_begin for c in range(ncores) ]
   # DVFS-enabled runs: emulate cycle_count asuming constant (initial) frequency
   if 'performance_model.elapsed_time' in stats and 'performance_model.cycle_count' not in stats:
     stats['performance_model.cycle_count'] = [ stats['fs_to_cycles_cores'][idx] * stats['performance_model.elapsed_time'][idx] for idx in range(ncores) ]
